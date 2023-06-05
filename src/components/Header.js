@@ -30,13 +30,15 @@ export default function Header({ socket, userId, setUserId }) {
     if (!socket) return;
 
     socket.on("new-room-created", ({ room }) => {
-      setRooms([...rooms, room]);
+      // setRooms([...rooms, room]);
+      setRooms((prevRooms) => [...prevRooms, room]);
     });
 
     socket.on("room-removed", ({ roomId }) => {
-      setRooms(rooms.filter((room) => room.roomId !== roomId));
+      // setRooms(rooms.filter((room) => room.roomId !== roomId));
+      setRooms((prevRooms) => prevRooms.filter((room) => room.roomId !== roomId));
     });
-  }, [socket]);
+  }, [socket, rooms]);
 
   function login() {
     const userId = uuidv4();

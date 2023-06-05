@@ -9,7 +9,7 @@ export default function Room() {
   useEffect(() => {
     if (!socket) return;
     socket.emit("join-room", { roomId: params.roomId });
-  }, [socket]);
+  }, [socket, params.roomId]);
 
   return <ChatWindow />;
 }
